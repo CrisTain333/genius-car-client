@@ -1,7 +1,9 @@
 import React from "react";
 import logo from "../../../assets/logo.svg";
 import About from "../About/About";
+import Product from "../Products/Product";
 import Service from "../Service/Service";
+import Team from "../Team/Team";
 const Home = () => {
   return (
     <>
@@ -45,7 +47,7 @@ const Home = () => {
         <div>
           <a
             href="/"
-            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-red-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+            className="hidden  lg:inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-red-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none "
           >
            Discover More
           </a>
@@ -54,7 +56,12 @@ const Home = () => {
     </div>
   </div>
    <About/>
+   <div className="py-10">
+    
    <Service/>
+   </div>
+   <Product/>
+   <Team/>
   </>
   );
 };

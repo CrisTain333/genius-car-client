@@ -1,45 +1,36 @@
 import React from "react";
-
-const ServiceCard = () => {
+import { Link } from "react-router-dom";
+const ServiceCard = ({service}) => {
+    const {img, price, title} = service;
   return(
 
-    <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-    <article class="overflow-hidden rounded-lg shadow-lg">
-      
-      <a href="#">
+    <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3  py-5  ">
+    <article className="overflow-hidden rounded-lg shadow-lg ">
         <img
-          alt="Placeholder"
-          class="block h-auto w-full"
-          src="https://picsum.photos/600/400/?random"
+          alt="ServiceImage"
+          className="block h-56 w-full"
+          src={img}
         />
-      </a>
-      <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-        <h1 class="text-lg">
-          <a class="no-underline hover:underline text-black" href="#">
-            Article Title
-          </a>
+      <header className="flex items-center justify-between leading-tight p-1 md:p-2">
+        <h1 className="text-lg font-bold">
+        {title}
+          
         </h1>
-        <p class="text-grey-darker text-sm">11/1/19</p>
       </header>
-      <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-        <a
-          class="flex items-center no-underline hover:underline text-black"
-          href="#"
+      <footer className="flex items-center justify-between leading-none p-1 md:p-2">
+        
+          <p className="ml-2 text-xl font-semibold text-red-500">Price: ${price}</p>
+        
+        <Link
+          className="no-underline text-grey-darker hover:text-red-dark"
+          to=""
         >
-          <img
-            alt="Placeholder"
-            class="block rounded-full"
-            src="https://picsum.photos/32/32/?random"
-          />
-          <p class="ml-2 text-sm">Author Name</p>
-        </a>
-        <a
-          class="no-underline text-grey-darker hover:text-red-dark"
-          href="#"
-        >
-          <span class="hidden">Like</span>
-          <i class="fa fa-heart"></i>
-        </a>
+          <span className="flex text-red-500">Buy Now  <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5l7 7-7 7"></path>
+                </svg></span>
+          <i className="fa fa-heart"></i>
+        </Link>
       </footer>
     </article>
   </div>
