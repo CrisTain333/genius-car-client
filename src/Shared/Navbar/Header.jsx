@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
+import UserContext from "../../Contexts/Context";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const {user,singoutUser} = useContext(UserContext);
   const li = (
     <>
       <li>
@@ -37,7 +39,7 @@ const Header = () => {
       </li>
       <li>
         <Link
-          to=""
+          to="/blog"
           aria-label="About us"
           title="About us"
           className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
@@ -45,7 +47,16 @@ const Header = () => {
           Blog
         </Link>
       </li>
+     {
+      user?
       <li>
+        <button
+          className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
+          onClick={singoutUser}
+        >
+          Sing Out
+        </button>
+      </li>: <li>
         <Link
           to="/login"
           aria-label="About us"
@@ -55,13 +66,8 @@ const Header = () => {
           Login
         </Link>
       </li>
-      <li>
-        <button
-          className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
-        >
-          Sing Out
-        </button>
-      </li>
+     }
+    
     </>
   );
   return (

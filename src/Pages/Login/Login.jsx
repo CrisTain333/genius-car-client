@@ -1,9 +1,53 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link , useNavigate ,useLocation } from "react-router-dom";
 import googlelogo from '../../assets/google.png'
+import UserContext from "../../Contexts/Context";
 import './lgoins.css'
 
 const Login = () => {
+  const [errorMessage, setErrorMessage] = useState("");
+  const {loginUser , googleLogin , githubLogin} = useContext(UserContext);
+
+  let navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    loginUser(email,password)
+    .then(user =>{
+      navigate(from, { replace: true });
+
+    })
+    .catch(error =>{
+      const errorMess = error.message;
+      setErrorMessage(errorMess);
+    })
+  }
+  const handleGoogleLogin =  ()=>{
+    googleLogin()
+    .then(user =>{
+      navigate(from, { replace: true });
+    })
+    .catch(error =>{
+      const err =  error.message
+      setErrorMessage(err);
+    })
+  }
+  const handleGitLogin =  ()=>{
+    githubLogin()
+    .then(user =>{
+      navigate(from, { replace: true });
+    })
+    .catch(error =>{
+      const err =  error.message
+      setErrorMessage(err);
+    })
+  }
+
   return (
 
             <div className="max-w-xl mb-6 mx-auto">
@@ -12,7 +56,7 @@ const Login = () => {
                   <span className="block w-full text-xl uppercase font-bold mb-4 text-center">
                     LOGIN
                   </span>
-                  <form className="mb-4">
+                  <form className="mb-4" onSubmit={handleSubmit}>
                     <div className="mb-4 md:w-full">
                       <label htmlFor="email" className="block text-xs mb-1">
                         Email
@@ -44,7 +88,7 @@ const Login = () => {
                     />
                   </form>
 
-                  <p className="text-red-600"></p>
+                  <p className="text-red-600">{errorMessage}</p>
 
                   <div className="flex items-center pt-4 space-x-1">
                     <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
@@ -57,12 +101,14 @@ const Login = () => {
                     <button
                       aria-label="Log in with Google"
                       className="p-3 rounded-sm"
+                      onClick={handleGoogleLogin}
                     >
                       <img src={googlelogo} className="w-5 h-5  fill-current" alt="" />
                     </button>
                     <button
                       aria-label="Log in with GitHub"
                       className="p-3 rounded-sm"
+                      onClick={handleGitLogin}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
