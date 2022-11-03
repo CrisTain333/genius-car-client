@@ -9,7 +9,11 @@ const ProtectedRoute = ({ children }) => {
   if (loading) {
     return (
       <>
-        <p>Loadign.....</p>
+      <div className="flex items-center justify-center space-x-2 w-full">
+	<div className="w-4 h-4 rounded-full animate-pulse bg-red-500"></div>
+	<div className="w-4 h-4 rounded-full animate-pulse bg-red-500"></div>
+	<div className="w-4 h-4 rounded-full animate-pulse bg-red-500"></div>
+</div>
       </>
     );
   }

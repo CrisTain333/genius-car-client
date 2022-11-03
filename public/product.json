@@ -1,14 +1,14 @@
 
 [
     {
-        "id":"6575ffhjkl55h",
+        
         "name": "Braking systems",
         "img" : "https://i.ibb.co/tb6qkJB/2.png",
    
         "price":"30"
     },
     {
-        "id":"657536664tty",
+        
         "name": "Royal Wheel",
         "img" : "https://i.ibb.co/YdPKhrP/5.png",
         "price":"20"
@@ -16,14 +16,14 @@
     }
     ,
     {
-        "id":"6575hki64572",
+        
         "name": "Automotive engine",
         "img" : "https://i.ibb.co/MMk00Yv/1.png",
         "price":"25"
 
     },
     {
-        "id":"698906764572",
+        
         "name": "Spare Part",
         "img" : "https://i.ibb.co/Tq97Hks/6.png",
         "price":"15"
@@ -31,14 +31,14 @@
     },
     {
         
-        "id":"69890hhhti4",
+        
         "name": "Air Filters",
         "img" : "https://i.ibb.co/HXfhFqW/3.png",
         "price":"35"
 
     },
     {
-        "id":"69890hkkt5467",
+        
         "name": "Auto Battery",
         "img" : "https://i.ibb.co/p2qr8N7/4.png",
         "price":"55"

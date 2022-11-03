@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 const Product = () => {
   const [data,setData]= useState([]);
   useEffect(()=>{
-    fetch('product.json')
+    fetch('http://localhost:5000/products')
     .then(res => res.json())
     .then(data => setData(data))
   },[])
@@ -25,7 +25,7 @@ const Product = () => {
           {
             data.map(e=>{
               return(
-          <ProductCard key={e.id} data={e}/>
+          <ProductCard key={e._id} data={e}/>
 
               )
             })

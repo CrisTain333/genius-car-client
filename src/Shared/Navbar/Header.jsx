@@ -19,26 +19,6 @@ const Header = () => {
       </li>
       <li>
         <Link
-          to=""
-          aria-label="Our product"
-          title="Our product"
-          className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
-        >
-          About
-        </Link>
-      </li>
-      <li>
-        <Link
-          to=""
-          aria-label="Product pricing"
-          title="Product pricing"
-          className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
-        >
-          Services
-        </Link>
-      </li>
-      <li>
-        <Link
           to="/blog"
           aria-label="About us"
           title="About us"
@@ -48,7 +28,17 @@ const Header = () => {
         </Link>
       </li>
      {
-      user?
+      user?<>
+      <li>
+        <Link
+          to="/orders"
+          aria-label="Our product"
+          title="Our product"
+          className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
+        >
+          Oders
+        </Link>
+      </li>
       <li>
         <button
           className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
@@ -56,7 +46,9 @@ const Header = () => {
         >
           Sing Out
         </button>
-      </li>: <li>
+      </li>
+      </>
+      : <li>
         <Link
           to="/login"
           aria-label="About us"

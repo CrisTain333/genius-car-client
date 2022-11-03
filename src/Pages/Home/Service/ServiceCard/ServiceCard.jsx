@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 const ServiceCard = ({service}) => {
-    const {img, price, title} = service;
+    const {img, price, title ,_id} = service;
   return(
 
     <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3  py-5  ">
@@ -23,9 +23,9 @@ const ServiceCard = ({service}) => {
         
         <Link
           className="no-underline text-grey-darker hover:text-red-dark"
-          to=""
+          to={`/service/${_id}`}
         >
-          <span className="flex text-red-500">Buy Now  <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+          <span className="flex text-red-500">Book<svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14"></path>
                   <path d="M12 5l7 7-7 7"></path>
                 </svg></span>
