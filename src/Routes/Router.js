@@ -32,17 +32,17 @@ const router = createBrowserRouter([
             },
             {
                 path:'/blog',
-                loader: async ()=>fetch(`http://localhost:5000/blogs`),
+                loader: async ()=>fetch(` https://genius-car-server-nine-pi.vercel.app/blogs`),
                 element: <Blog/>
             },
             {
                 path:'/service/:id',
-                loader: async ({params})=>fetch(`http://localhost:5000/services/${params.id}`),
+                loader: async ({params})=>fetch(` https://genius-car-server-nine-pi.vercel.app/services/${params.id}`),
                 element:<ServiceDetails/>
             },
             {
                 path:'/checkout/:id',
-                loader: async ({params})=>fetch(`http://localhost:5000/services/${params.id}`),
+                loader: async ({params})=>fetch(` https://genius-car-server-nine-pi.vercel.app/services/${params.id}`),
                 element: <ProtectedRoute><Checkout/></ProtectedRoute>
             },
             {
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'/blog/:id',
-                loader: async ({params})=>fetch(`http://localhost:5000/blog/${params.id}`),
+                loader: async ({params})=>fetch(` https://genius-car-server-nine-pi.vercel.app/blog/${params.id}`),
                 element: <DetailBlog/>
 
             }

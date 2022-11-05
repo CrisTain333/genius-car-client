@@ -1,17 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Link , useNavigate, useLocation  } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import googlelogo from "../../assets/google.png";
 import UserContext from "../../Contexts/Context";
 
 const Singup = () => {
   const [errorMessage, setErrorMessage] = useState("");
-  const { createUser  , googleLogin, githubLogin} = useContext(UserContext);
-
+  const { createUser, googleLogin, githubLogin } = useContext(UserContext);
 
   let navigate = useNavigate();
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,34 +30,67 @@ const Singup = () => {
       return;
     }
     createUser(email, password)
-      .then((user) =>{
-        navigate(from, { replace: true });
+      .then((result) => {
+        const user = result.user;
+        const currentUser = {
+          email: user.email,
+        };
+        fetch(" https://genius-car-server-nine-pi.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            
+            // local storage is the easiest but not the best place to store jwt token
+            localStorage.setItem("genius-token", data.token);
+            navigate(from, { replace: true });
+          });
       })
       .catch((error) => {
         const errorMess = error.message;
         setErrorMessage(errorMess);
       });
   };
-  const handleGoogleLogin =  ()=>{
+  const handleGoogleLogin = () => {
     googleLogin()
-    .then(user =>{
-      navigate(from, { replace: true });
-    })
-    .catch(error =>{
-      const err =  error.message
-      setErrorMessage(err);
-    })
-  }
-  const handleGitLogin =  ()=>{
+      .then((result) => {
+        const user = result.user;
+        const currentUser = {
+          email: user.email,
+        };
+        fetch(" https://genius-car-server-nine-pi.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            // local storage is the easiest but not the best place to store jwt token
+            localStorage.setItem("genius-token", data.token);
+            navigate(from, { replace: true });
+          });
+      })
+      .catch((error) => {
+        const err = error.message;
+        setErrorMessage(err);
+      });
+  };
+  const handleGitLogin = () => {
     githubLogin()
-    .then(user =>{
-      navigate(from, { replace: true });
-    })
-    .catch(error =>{
-      const err =  error.message
-      setErrorMessage(err);
-    })
-  }
+      .then((user) => {
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        const err = error.message;
+        setErrorMessage(err);
+      });
+  };
 
   return (
     <div className="max-w-xl mx-auto mb-6">
@@ -125,10 +156,18 @@ const Singup = () => {
             <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
           </div>
           <div className="flex justify-center space-x-4">
-            <button aria-label="Log in with Google" onClick={handleGoogleLogin} className="p-3 rounded-sm">
+            <button
+              aria-label="Log in with Google"
+              onClick={handleGoogleLogin}
+              className="p-3 rounded-sm"
+            >
               <img src={googlelogo} className="w-5 h-5  fill-current" alt="" />
             </button>
-            <button aria-label="Log in with GitHub" className="p-3 rounded-sm" onClick={handleGitLogin}>
+            <button
+              aria-label="Log in with GitHub"
+              className="p-3 rounded-sm"
+              onClick={handleGitLogin}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 32 32"

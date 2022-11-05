@@ -1,7 +1,7 @@
 import React from "react";
 
-const OrderRow = ({data,handleDelete}) => {
-  const { serviceName, img, price , _id} = data;
+const OrderRow = ({data,handleDelete, handleStatusUpdate}) => {
+  const { serviceName, img, price , _id , status} = data;
   return (
     <>
       <tr>
@@ -38,9 +38,10 @@ const OrderRow = ({data,handleDelete}) => {
           <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
             <span
               aria-hidden
-              className="absolute inset-0 bg-red-500  rounded-full"
+              //   bg-red-500   rounded-full"
+              className={status?"bg-green-500 absolute inset-0 rounded-full":"bg-red-500 absolute inset-0 rounded-full"}
             ></span>
-            <span className="relative text-white">Pending</span>
+            <button className="relative text-white" onClick={()=> handleStatusUpdate(_id)}>{status ? status : 'pending'}</button>
           </span>
         </td>
       </tr>

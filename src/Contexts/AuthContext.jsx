@@ -39,14 +39,9 @@ const AuthContext = ({ children }) => {
   };
 
   const singoutUser = () => {
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        // An error happened.
-      });
+    localStorage.removeItem('genius-token');
     setLoading(true);
+   return signOut(auth)
   };
 
   useEffect(() => {

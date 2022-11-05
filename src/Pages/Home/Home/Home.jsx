@@ -55,7 +55,7 @@ const Home = () => {
       </div>
     </div>
   </div>
-   <About/>
+   {/* <About/> */}
    <div className="py-10">
     
    <Service/>

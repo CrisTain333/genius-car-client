@@ -15,7 +15,7 @@ const BlogPost = () => {
         description
     }
 
-    fetch('http://localhost:5000/blog/post',{
+    fetch(' https://genius-car-server-nine-pi.vercel.app/blog/post',{
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
@@ -26,7 +26,6 @@ const BlogPost = () => {
     .then(data=> {
         if(data.acknowledged){
             toast.success('Blog Posted Successfully ')
-            navigate('/blog')
         }
     });
 

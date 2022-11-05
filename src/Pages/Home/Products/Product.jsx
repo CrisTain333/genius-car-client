@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 const Product = () => {
   const [data,setData]= useState([]);
   useEffect(()=>{
-    fetch('http://localhost:5000/products')
+    fetch(' https://genius-car-server-nine-pi.vercel.app/products')
     .then(res => res.json())
     .then(data => setData(data))
   },[])
